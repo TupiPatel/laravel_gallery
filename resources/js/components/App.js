@@ -1,24 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Navbar from './Navbar'
+import Gallery from './Gallery'
 
-function App() {
+
+class App extends Component {
+
+  render () {
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">App Component</div>
-
-                        <div className="card-body">I'm an app component!</div>
-                    </div>
-                </div>
-            </div>
+      <BrowserRouter  >
+        <div>
+               
+          <Switch>
+          <Route path="/" render={(props) => (
+                    <Navbar {...props}/>
+                )}/>
+            <Route exact path="/" component={Gallery}/>
+          </Switch>
         </div>
-    );
+      </BrowserRouter>
+    )
+  }
 }
-
-export default App;
-
-if (document.getElementById('app')) {
-    ReactDOM.render(<App />, document.getElementById('app'));
-}
+//export default withRouter(App);
+ReactDOM.render(<App />, document.getElementById('app'))

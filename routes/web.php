@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,6 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function(){
    // Route::view('/{path?}', 'app');
+   Route::get('/logout', [LoginController::class,'logout']);
     Route::get('{all?}',  [GalleryController::class, 'index'])->where('all', '([A-zd\-\/_.]+)?');
 });
